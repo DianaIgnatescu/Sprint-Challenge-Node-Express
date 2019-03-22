@@ -56,15 +56,30 @@ router.put('/:id', (req, res) => {
     projectDb.update(id, project)
         .then((data) => {
           if (!data) {
-            res.status(404).json({message: 'The project with the specified ID does not exist.'});
+            res.status(404).json({ message: 'The project with the specified ID does not exist.' });
           } else {
-            res.status(200).json({project: {id, ...project}});
+            res.status(200).json({ project: { id, ...project } });
           }
         })
         .catch((error) => {
-          res.status(500).json({error: 'The project information could not be modified.'});
+          res.status(500).json({ error: 'The project information could not be modified.' });
         });
   }
+});
+
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+  projectDb.remove(id)
+      .then((data) => {
+        if(!data) {
+          res.status(404).json({ message: 'The project with the specified ID does not exist.' });
+        } else {
+          res.status(200).json({ message: `The project with the ID ${id} has now been removed from the database.` });
+        }
+      })
+      .catch((error) => {
+        res.status(500).json({ errorMessage: 'The project could not be removed.' });
+      });
 });
 
 module.exports = router;
