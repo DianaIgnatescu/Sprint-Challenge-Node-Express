@@ -30,10 +30,7 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Describe Middleware?
 
-      Middleware are functions that have access to the request and response, and the next middleware function in an
-      application's request-response cycle. Currently we can use built-in middleware that can be added by making a call
-      to .use(), third-party middleware that can be installed with npm, and custom middleware, that are functions we
-      write to perform particular tasks. 
+      Middleware are functions that have access to the request and response, and the next middleware function in an application's request-response cycle. Currently we can use built-in middleware that can be added by making a call to .use(), third-party middleware that can be installed with npm, and custom middleware, that are functions we write to perform particular tasks. 
 
 - [ ] Describe a Resource?
 
@@ -41,14 +38,11 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] What can the API return to help clients know if a request was successful?
 
-      An API can return a status response code of 200 to indicate that a request was successful, or it can return a
-      status response code of 201 which  indicates that a resource was successfully created as a result of a successful
-      request.
+      An API can return a status response code of 200 to indicate that a request was successful, or it can return a status response code of 201 which  indicates that a resource was successfully created as a result of a successful request.
 
 - [ ] How can we partition our application into sub-applications?
 
-      We can use routers to split an application into sub-applications in order to make it more modular and easier
-      to maintain. 
+      We can use routers to split an application into sub-applications in order to make it more modular and easier to maintain. 
 
 ## Project Setup
 
