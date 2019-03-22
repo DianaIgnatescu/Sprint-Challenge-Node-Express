@@ -1,17 +1,32 @@
 const express = require('express');
 
 const actionDb = require('../../data/helpers/actionModel');
+const projectDb = require('../../data/helpers/projectModel');
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  actionDb.get()
-      .then((actions) => {
-        res.status(200).json(actions);
-      })
-      .catch((error) => {
-        res.status(500).json({ error: 'The actions could not be retrieved.' });
-      });
+  if (req.query && req.query.project_id) {
+    projectDb.getProjectActions(req.query.project_id)
+        .then((actions) => {
+          if (!actions) {
+            res.status(404).json({ message: 'The project with the specified ID does not have any actions.' });
+          } else {
+            res.status(200).json(actions)
+          }
+        })
+        .catch((error) => {
+          res.status(500).json({ error: 'the project actions could not be retrieved.' });
+        });
+  } else {
+    actionDb.get()
+        .then((actions) => {
+          res.status(200).json(actions);
+        })
+        .catch((error) => {
+          res.status(500).json({ error: 'The actions could not be retrieved.' });
+        });
+  }
 });
 
 router.get('/:id', (req, res) => {
